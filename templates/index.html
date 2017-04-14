@@ -1,20 +1,94 @@
 <!DOCTYPE html>
 <html>
-
-    <head>
-        <title>e24 test oppgave</title>
-    </head>
-
-    <body>                
-        hosts : {{ top_5_hosts }}
-        <br />
-        files : {{ top_5_files }}
-        <br /><br />
-        rss : {{ sorted_rss }}
-        <br /><br />
-        json : {{ sorted_json }}
-    </body>
-
-    <script>        
-    </script>
+  <head>
+    <title>
+      e24 test
+    </title>
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/index.css') }}">
+  </head>
+  <body>
+    <div class="tabbed">
+      <input name="tabbed" id="tabbed1" type="radio" checked>
+      <section>
+        <h1>
+          <label for="tabbed1">Varnish</label>
+        </h1>
+        <div>
+			<table>
+				<tr>
+    				<th>Host</th>    							
+					<th>count</th>    							
+  				</tr>
+				{% for i in top_5_hosts %}							  
+				<tr>
+					<td>{{ i[0] }}</td>													
+					<td>{{ i[1] }}</td>                
+				</tr>
+				{% endfor %}
+			</table>	
+			<br />
+			<table>
+				<tr>
+    				<th>File</th>    							
+					<th>count</th>    							
+  				</tr>
+				{% for i in top_5_files %}							  
+				<tr>
+					<td>{{ i[0] }}</td>													
+					<td>{{ i[1] }}</td>                
+				</tr>
+				{% endfor %}
+			</table>			
+			<!--{{ top_5_hosts }}-->
+			<!--<br />-->
+			<!--{{ top_5_files }}          -->
+        </div>
+      </section>
+      <input name="tabbed" id="tabbed2" type="radio">
+      <section>
+        <h1>
+          <label for="tabbed2">RSS</label>
+        </h1>
+        <div>			
+			<table>
+				<tr>
+    				<th>Title</th>
+    				<th>Published</th>     				
+  				</tr>
+				{% for i in sorted_rss %}							  
+				<tr>
+					<td>{{ i['title'] }}</td>													
+					<td>{{ i['published'] }}</td>                
+				</tr>
+				{% endfor %}
+			</table>			
+          <!--{{ sorted_rss }}-->
+        </div>
+      </section>
+      <input name="tabbed" id="tabbed3" type="radio">
+      <section>
+        <h1>
+          <label for="tabbed3">JSON</label>
+        </h1>
+        <div>
+			<table>
+				<tr>
+    				<th>Title</th>
+    				<th>Date</th>     				
+					<th>Time</th>     				
+  				</tr>
+				{% for i in sorted_json %}							  
+				<tr>
+					<td>{{ i['title'] }}</td>													
+					<td>{{ i['date'] }}</td>                
+					<td>{{ i['time'] }}</td>                
+				</tr>
+				{% endfor %}
+			</table>			
+          <!--{{ sorted_json }}-->
+        </div>
+      </section>
+      <input name="tabbed" id="tabbed4" type="radio">      
+    </div>
+  </body>
 </html>
