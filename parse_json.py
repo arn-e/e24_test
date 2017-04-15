@@ -31,8 +31,8 @@ class JsonDataHandler:
         json_sorted_by_date = self.sort_json_by_date(raw_json_data)
         return json_sorted_by_date
 
-tmp = JsonDataHandler()
-foo = tmp.sorted_json()
+# tmp = JsonDataHandler()
+# foo = tmp.sorted_json()
 
-for i in foo:
-     print i['date'] + ' ' + i['time']
+# for i in foo:
+#      print i['date'] + ' ' + i['time']

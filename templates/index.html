@@ -16,8 +16,8 @@
         <div>
 			<table>
 				<tr>
-    				<th>Host</th>    							
-					<th>count</th>    							
+    				<th align="left">Host</th>    							
+					<th align="left">count</th>    							
   				</tr>
 				{% for i in top_5_hosts %}							  
 				<tr>
@@ -29,8 +29,8 @@
 			<br />
 			<table>
 				<tr>
-    				<th>File</th>    							
-					<th>count</th>    							
+    				<th align="left">File</th>    							
+					<th align="left">count</th>    							
   				</tr>
 				{% for i in top_5_files %}							  
 				<tr>
@@ -52,12 +52,12 @@
         <div>			
 			<table>
 				<tr>
-    				<th>Title</th>
-    				<th>Published</th>     				
+    				<th align="left">Title</th>
+    				<th align="left">Published</th>     				
   				</tr>
 				{% for i in sorted_rss %}							  
 				<tr>
-					<td>{{ i['title'] }}</td>													
+					<td><a target="_blank" href='{{ i["link"] }}'>{{ i['title'] }}</a></td>													
 					<td>{{ i['published'] }}</td>                
 				</tr>
 				{% endfor %}
@@ -73,13 +73,13 @@
         <div>
 			<table>
 				<tr>
-    				<th>Title</th>
-    				<th>Date</th>     				
-					<th>Time</th>     				
+    				<th align="left">Title</th>
+    				<th align="left">Date</th>     				
+					<th align="left">Time</th>     				
   				</tr>
 				{% for i in sorted_json %}							  
 				<tr>
-					<td>{{ i['title'] }}</td>													
+					<td><a target="_blank" href='{{ i["link"] }}'>{{ i['title'] }}</a></td>													
 					<td>{{ i['date'] }}</td>                
 					<td>{{ i['time'] }}</td>                
 				</tr>
