@@ -19,6 +19,12 @@ class RssDataHandler:
         )
         return sorted_feed
 
+    def handle_missing_title(self, rss_feed):
+        for i in rss_feed:
+            if not i['title'] or i['title'].isspace():
+                i['title'] = i['link']
+        return rss_feed
+
     def trim_rss_feed(self, rss_data):
         trimmed_rss = []
         for i in rss_data:
@@ -32,7 +38,7 @@ class RssDataHandler:
     def sorted_rss(self):
         rss_feed = self.read_rss_feed(feed_url)
         sorted_feed = self.sort_rss_feed(rss_feed)        
-        return self.trim_rss_feed(sorted_feed)
+        return self.trim_rss_feed(self.handle_missing_title(sorted_feed))
         
 
 # tmp = RssDataHandler()

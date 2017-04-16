@@ -2,6 +2,8 @@ import urllib
 from urlparse import urlparse
 from collections import Counter
 
+varnish_url = 'http://tech.vg.no/intervjuoppgave/varnish.log'
+
 class VarnishDataHandler:
         
     def exclude_non_files(self, full_file_list):
@@ -31,26 +33,34 @@ class VarnishDataHandler:
         return parsed_file
 
     def host_and_filename(self, full_varnish_log):
-        file_list, host_list = [], []
+        file_list, host_list, file_map = [], [], {}
 
         for i in full_varnish_log:
             full_path = i.split()[6]
-            host_list.append(self.parsed_host(full_path))
-            file_list.append(self.parsed_filename(full_path))        
 
-        return file_list, host_list
+            host_list.append(self.parsed_host(full_path))
+            
+            file_name = self.parsed_filename(full_path)            
+            file_list.append(file_name)
+            file_map[file_name] = full_path            
+
+        return file_list, host_list, file_map
 
     def top_results(self, input_list, desired_count):
         to_count = (word for word in input_list)
         counted_items = Counter(to_count)
         return counted_items.most_common(desired_count)
-
-    def top_5_hosts_and_files(self):
-        # raw_varnish_log = self.full_varnish_log_from_web('http://tech.vg.no/intervjuoppgave/varnish.log')
-        raw_varnish_log = self.full_varnish_log_from_file('varnish.log')
-        file_list, host_list = self.host_and_filename(raw_varnish_log)
+    
+    def top_5_hosts_and_files(self):        
+        top_file_map = {}
+        raw_varnish_log = self.full_varnish_log_from_web(varnish_url)
+        # raw_varnish_log = self.full_varnish_log_from_file('varnish.log')
+        file_list, host_list, file_map = self.host_and_filename(raw_varnish_log)
 
         top_hosts = self.top_results(host_list, 5)
         top_files = self.top_results(self.exclude_non_files(file_list), 5)
 
-        return top_hosts, top_files
+        for i in top_files:
+            top_file_map[i[0]] = file_map[i[0]]
+
+        return top_hosts, top_files, top_file_map

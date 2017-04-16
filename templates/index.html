@@ -17,7 +17,7 @@
 			<table>
 				<tr>
     				<th align="left">Host</th>    							
-					<th align="left">count</th>    							
+					<th align="left">Count</th>    							
   				</tr>
 				{% for i in top_5_hosts %}							  
 				<tr>
@@ -30,11 +30,11 @@
 			<table>
 				<tr>
     				<th align="left">File</th>    							
-					<th align="left">count</th>    							
+					<th align="left">Count</th>    							
   				</tr>
 				{% for i in top_5_files %}							  
 				<tr>
-					<td>{{ i[0] }}</td>													
+					<td><a target="_blank" href='{{ top_file_map[i[0]] }}'>{{ i[0] }}</a></td>													
 					<td>{{ i[1] }}</td>                
 				</tr>
 				{% endfor %}

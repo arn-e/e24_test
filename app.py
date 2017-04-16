@@ -12,7 +12,7 @@ def default_index():
     rss_handler = parse_rss.RssDataHandler()
     json_handler = parse_json.JsonDataHandler()
 
-    top_5_hosts, top_5_files = varnish_handler.top_5_hosts_and_files()
+    top_5_hosts, top_5_files, top_file_map = varnish_handler.top_5_hosts_and_files()
     sorted_rss = rss_handler.sorted_rss()
     sorted_json = json_handler.sorted_json()
 
@@ -20,8 +20,8 @@ def default_index():
         top_5_hosts=top_5_hosts, 
         top_5_files=top_5_files,
         sorted_rss=sorted_rss,
-        sorted_json=sorted_json
-        )
+        sorted_json=sorted_json,
+        top_file_map=top_file_map)
 
 @app.route('/<string:page_name>/')
 def render_static(page_name):

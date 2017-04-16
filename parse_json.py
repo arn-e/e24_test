@@ -8,6 +8,7 @@ from dateutil import parser
 
 pp = pprint.PrettyPrinter(indent=4)
 locale.setlocale(locale.LC_ALL, 'no_NO')
+json_url = 'http://static.e24.no/testfeed.json'
 
 class JsonDataHandler:
 
@@ -27,7 +28,7 @@ class JsonDataHandler:
         return sorted_json
 
     def sorted_json(self):
-        raw_json_data = self.read_json('http://static.e24.no/testfeed.json')
+        raw_json_data = self.read_json(json_url)
         json_sorted_by_date = self.sort_json_by_date(raw_json_data)
         return json_sorted_by_date
 
