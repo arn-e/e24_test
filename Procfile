@@ -1,1 +1,1 @@
-web: python run.py
+web: gunicorn e24_website:app 
