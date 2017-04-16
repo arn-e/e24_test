@@ -7,8 +7,12 @@ from datetime import datetime
 from dateutil import parser
 
 pp = pprint.PrettyPrinter(indent=4)
-locale.setlocale(locale.LC_ALL, 'no_NO')
 json_url = 'http://static.e24.no/testfeed.json'
+
+try:
+    locale.setlocale(locale.LC_ALL, 'no_NO')
+except:
+    locale.setlocale(locale.LC_ALL, 'nn_NO.utf8')
 
 class JsonDataHandler:
 
