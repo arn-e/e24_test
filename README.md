@@ -1,4 +1,4 @@
-## e24 Test Project
+## E24 Test Project
 
 ### Requirements
 
@@ -9,3 +9,7 @@
 
 1. pip install -r requirements.txt
 2. python run.py
+
+### Demo
+
+[https://e24-test.herokuapp.com/](https://e24-test.herokuapp.com/)
