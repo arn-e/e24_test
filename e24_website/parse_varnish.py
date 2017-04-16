@@ -54,7 +54,6 @@ class VarnishDataHandler:
     def top_5_hosts_and_files(self):        
         top_file_map = {}
         raw_varnish_log = self.full_varnish_log_from_web(varnish_url)
-        # raw_varnish_log = self.full_varnish_log_from_file('varnish.log')
         file_list, host_list, file_map = self.host_and_filename(raw_varnish_log)
 
         top_hosts = self.top_results(host_list, 5)

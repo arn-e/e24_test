@@ -19,12 +19,6 @@ class RssDataHandler:
         )
         return sorted_feed
 
-    def handle_missing_title(self, rss_feed):
-        for i in rss_feed:
-            if not i['title'] or i['title'].isspace():
-                i['title'] = i['link']
-        return rss_feed
-
     def trim_rss_feed(self, rss_data):
         trimmed_rss = []
         for i in rss_data:
@@ -34,6 +28,12 @@ class RssDataHandler:
             rss_item['published'] = i['published']        
             trimmed_rss.append(rss_item)
         return trimmed_rss
+
+    def handle_missing_title(self, rss_feed):
+        for i in rss_feed:
+            if not i['title'] or i['title'].isspace():
+                i['title'] = i['link']
+        return rss_feed
 
     def sorted_rss(self):
         rss_feed = self.read_rss_feed(feed_url)
